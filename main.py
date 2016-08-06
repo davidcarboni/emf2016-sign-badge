@@ -4,7 +4,7 @@ from dialogs import notice
 from wifi import is_connected
 
 
-DIALOG_TITLE = "EMF Number One
+DIALOG_TITLE = "EMF Number One"
 
 
 if not is_connected():
