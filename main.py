@@ -6,6 +6,42 @@ from dialogs import notice
 
 DIALOG_TITLE = "EMF Number One"
 
+
+def dialog(message):
+    notice(message, title=DIALOG_TITLE)
+    drawui()
+
+    
+if not wifi.is_connected():
+    dialog("It looks like your wifi isn't connected, so you probably won't be able to access the sign. You may want to reset your badge?")
+
+
+def wiggle():
+    request("Let's give it some wiggle!", "I see you baby, #shakingthadass!!", "/lights")
+    drawui()
+
+
+def disco():
+    request("Let's get disco, honey!", "Hope you enjoyed some disco action!!", "/disco")
+    drawui()
+
+
+def request(before, after, uri):
+    dialog(before)
+    drawui()
+    try:
+        url = "http://carboni.io" + uri
+        print("GET: " + url)
+        response = get(url).raise_for_status().content
+        print("EMF number one says: " + repr(response))
+        dialog("Got a reply from emf number one: " + repr(response))
+        dialog(after)
+        print("finish!")
+    except Exception as ex:
+        print("Error: " + repr(ex))
+        dialog("Aw shoot, we got an error: " + repr(ex) + " - it might be that wifi disconnected?")
+
+
 def drawui():
     ugfx.init()
     buttons.init()
@@ -34,32 +70,6 @@ def drawui():
     ugfx.area(283, 169, 14, 10, ugfx.WHITE)
     ugfx.area(283, 187, 14, 10, ugfx.WHITE)
 
-if not wifi.is_connected():
-    notice("It looks like your wifi isn't connected, so you probably won't be able to access the sign. You may want to reset your badge?", DIALOG_TITLE)
-    drawui()
-
-def wiggle():
-    request("Let's give it some wiggle!", "I see you baby, #shakingthadass!!", "/lights")
-    drawui()
-
-def disco():
-    request("Let's get disco, honey!", "Hope you enjoyed some disco action!!", "/disco")
-    drawui()
-
-def request(before, after, uri):
-    notice(before, title=DIALOG_TITLE)
-    drawui()
-    try:
-        url = "http://carboni.io" + uri
-        print("GET: " + url)
-        response = get(url).raise_for_status().content
-        print("EMF number one says: " + repr(response))
-        notice("Got a reply from emf number one: " + repr(response), title=DIALOG_TITLE)
-        notice(after, title=DIALOG_TITLE)
-        print("finish!")
-    except Exception as ex:
-        print("Error: " + repr(ex))
-        notice("Aw shoot, we got an error: " + repr(ex) + " - it might be that wifi disconnected?", title=DIALOG_TITLE)
 
 drawui()
 while True:
@@ -67,5 +77,3 @@ while True:
         wiggle()
     elif buttons.is_triggered("BTN_B"):
         disco()
-
-
