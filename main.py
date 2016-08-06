@@ -55,7 +55,7 @@ def drawui():
     ugfx.text(45, 45, "A", ugfx.RED)
     ugfx.text(45, 95, "B", ugfx.RED)
 
-    ugfx.text(95, 45, "Wiggle the lights", ugfx.WHITE)
+    ugfx.text(95, 45, "Flash the lights", ugfx.WHITE)
     ugfx.text(95, 95, "Disco Inferno", ugfx.WHITE)
 
     ugfx.fill_polygon(270,50, [ [0,0], [40,0], [40, 175], [0, 175] ], ugfx.RED)#  , [230, 100], [230, 60]
@@ -71,7 +71,6 @@ def drawui():
     ugfx.area(283, 187, 14, 10, ugfx.WHITE)
 
 
-buttons.enable_menu_reset()
 drawui()
 while True:
     if buttons.is_triggered("BTN_A"):
