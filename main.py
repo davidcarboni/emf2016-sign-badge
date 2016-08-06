@@ -14,7 +14,9 @@ def disco():
 def request(before, after, uri):
     notice(before)
     try:
-        response = get("http://carboni.io/" + uri).raise_for_status().content
+        url = "http://carboni.io" + uri
+        print("GET: " + url)
+        response = get(url).raise_for_status().content
         print("EMF number one says: " + repr(response))
         notice("Got a reply from emf number one: " + repr(response))
         notice(after)
