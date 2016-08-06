@@ -11,7 +11,7 @@ def dialog(message):
     notice(message, title=DIALOG_TITLE)
     drawui()
 
-    
+
 if not wifi.is_connected():
     dialog("It looks like your wifi isn't connected, so you probably won't be able to access the sign. You may want to reset your badge?")
 
@@ -71,6 +71,7 @@ def drawui():
     ugfx.area(283, 187, 14, 10, ugfx.WHITE)
 
 
+buttons.enable_menu_reset()
 drawui()
 while True:
     if buttons.is_triggered("BTN_A"):
