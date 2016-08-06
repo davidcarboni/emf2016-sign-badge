@@ -1,4 +1,5 @@
 from http_client import get
+import wifi
 from buttons import *
 from dialogs import notice
 
