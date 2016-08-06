@@ -1,13 +1,12 @@
 from http_client import get
 from buttons import *
 from dialogs import notice
-from wifi import is_connected
 
 
 DIALOG_TITLE = "EMF Number One"
 
 
-if not is_connected():
+if not wifi.is_connected():
     notice("It looks like your wifi isn't connected, so you probably won't be able to access the sign. You may want to reset your badge?", DIALOG_TITLE)
 
 
@@ -31,7 +30,7 @@ def request(before, after, uri):
         print("finish!")
     except Exception as ex:
         print("Error: " + repr(ex))
-        notice("Aw shoot, we got an error: " + repr(ex), title=DIALOG_TITLE)
+        notice("Aw shoot, we got an error: " + repr(ex) + " - it might be that wifi disconnected?", title=DIALOG_TITLE)
 
 
 while True:
