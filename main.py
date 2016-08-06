@@ -1,8 +1,15 @@
-from http_client import *
+from http_client import get
 from buttons import *
-from dialogs import *
+from dialogs import notice
+from wifi import is_connected
+
 
 DIALOG_TITLE = "EMF Number One
+
+
+if not is_connected():
+    notice("It looks like your wifi isn't connected, so you probably won't be able to access the sign. You may want to reset your badge?", DIALOG_TITLE)
+
 
 def wiggle():
     request("Let's give it some wiggle!", "Hopefully you saw the lights wiggle!!", "/lights")
