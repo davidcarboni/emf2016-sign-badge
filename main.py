@@ -12,11 +12,11 @@ if not is_connected():
 
 
 def wiggle():
-    request("Let's give it some wiggle!", "Hopefully you saw the lights wiggle!!", "/lights")
+    request("Let's give it some wiggle!", "I see you baby, #shakingthadass!!", "/lights")
 
 
 def disco():
-    request("Let's get disco, honey!", "Hopefully you saw some disco action!!", "/disco")
+    request("Let's get disco, honey!", "Hope you enjoyed some disco action!!", "/disco")
 
 
 def request(before, after, uri):
