@@ -1,8 +1,8 @@
 from http_client import get
-from dialogs import notice
-from wifi import is_connected
 import ugfx
 import buttons
+import wifi
+from dialogs import notice
 
 DIALOG_TITLE = "EMF Number One"
 
@@ -34,21 +34,21 @@ def drawui():
     ugfx.area(283, 169, 14, 10, ugfx.WHITE)
     ugfx.area(283, 187, 14, 10, ugfx.WHITE)
 
-if not is_connected():
+if not wifi.is_connected():
     notice("It looks like your wifi isn't connected, so you probably won't be able to access the sign. You may want to reset your badge?", DIALOG_TITLE)
     drawui()
 
 def wiggle():
-    request("Let's give it some wiggle!", "Hopefully you saw the lights wiggle!!", "/lights")
+    request("Let's give it some wiggle!", "I see you baby, #shakingthadass!!", "/lights")
     drawui()
 
-
 def disco():
-    request("Let's get disco, honey!", "Hopefully you saw some disco action!!", "/disco")
+    request("Let's get disco, honey!", "Hope you enjoyed some disco action!!", "/disco")
     drawui()
 
 def request(before, after, uri):
     notice(before, title=DIALOG_TITLE)
+    drawui()
     try:
         url = "http://carboni.io" + uri
         print("GET: " + url)
@@ -59,7 +59,7 @@ def request(before, after, uri):
         print("finish!")
     except Exception as ex:
         print("Error: " + repr(ex))
-        notice("Aw shoot, we got an error: " + repr(ex), title=DIALOG_TITLE)
+        notice("Aw shoot, we got an error: " + repr(ex) + " - it might be that wifi disconnected?", title=DIALOG_TITLE)
 
 drawui()
 while True:
